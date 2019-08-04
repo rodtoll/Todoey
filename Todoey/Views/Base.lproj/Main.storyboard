@@ -9,7 +9,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Todoey-->
+        <!--Items-->
         <scene sceneID="OEH-TP-WUk">
             <objects>
                 <tableViewController id="ggg-75-hGb" customClass="TodoListViewController" customModule="Todoey" customModuleProvider="target" sceneMemberID="viewController">
@@ -40,7 +40,7 @@
                             <outlet property="delegate" destination="ggg-75-hGb" id="nNS-X2-tcD"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Todoey" id="vLG-aS-rYO">
+                    <navigationItem key="navigationItem" title="Items" id="vLG-aS-rYO">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="08c-Af-FbX">
                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <connections>
@@ -56,7 +56,7 @@
             </objects>
             <point key="canvasLocation" x="1509" y="60"/>
         </scene>
-        <!--Category View Controller Table View Controller-->
+        <!--Todoey-->
         <scene sceneID="F1x-lc-E6c">
             <objects>
                 <tableViewController id="2o3-sG-eQO" customClass="CategoryViewControllerTableViewController" customModule="Todoey" customModuleProvider="target" sceneMemberID="viewController">
@@ -65,7 +65,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="5Uu-bG-Own">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="CategoryCell" id="5Uu-bG-Own">
                                 <rect key="frame" x="0.0" y="28" width="414" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="5Uu-bG-Own" id="qJF-Sg-V2P">
@@ -79,7 +79,14 @@
                             <outlet property="delegate" destination="2o3-sG-eQO" id="Ea1-cT-1Sz"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="k9x-ip-kUV"/>
+                    <navigationItem key="navigationItem" title="Todoey" id="k9x-ip-kUV">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="J98-EF-dgP">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <connections>
+                                <action selector="addButtonPressed:" destination="2o3-sG-eQO" id="PMr-g3-Xf1"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <segue destination="ggg-75-hGb" kind="show" identifier="goToItems" id="mvF-cy-cxk"/>
                     </connections>
