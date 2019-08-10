@@ -9,7 +9,7 @@
 import UIKit
 import RealmSwift
 
-class CategoryViewControllerTableViewController: UITableViewController {
+class CategoryViewControllerTableViewController: SwipeTableViewController {
 
     let realm = try! Realm()
     var itemArray: Results<Category>?
@@ -17,6 +17,7 @@ class CategoryViewControllerTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        tableView.rowHeight = 80.0
         loadData()
     }
 
@@ -27,10 +28,17 @@ class CategoryViewControllerTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "CategoryCell", for: indexPath)
+        let cell = super.tableView(tableView, cellForRowAt: indexPath)
         cell.textLabel?.text = itemArray?[indexPath.row].title ?? "No Categories added"
         return cell
     }
+    
+    /*override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell") as! SwipeTableViewCell
+        cell.delegate = self
+        return cell
+    }*/
+    
     
     // MARK: - Table Selection
     //MARK - TableView Delegate Methods
@@ -88,5 +96,21 @@ class CategoryViewControllerTableViewController: UITableViewController {
         }
         tableView.reloadData()
     }
+        
+    override func updateModel(at indexPath: IndexPath) {
+        if let categoryToDelete = self.itemArray?[indexPath.row] {
+            do {
+                try self.realm.write {
+                    self.realm.delete(categoryToDelete)
+                }
+            } catch {
+                print("Error deleting category")
+            }
+        } else {
+            print("Error finding category to delete")
+        }
+    }
 
 }
+
+
