@@ -116,7 +116,6 @@ class TodoListViewController: SwipeTableViewController {
                         newItem.done = false
                         newItem.title = textField.text!
                         newItem.dateCreated = Date()
-                        newItem.hexColor = UIColor.randomFlat.hexValue()
                         currentCategory.items.append(newItem)
                         self.tableView.reloadData()
                     }
